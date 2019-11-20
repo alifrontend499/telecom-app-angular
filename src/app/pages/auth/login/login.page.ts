@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { CommonService } from 'src/app/_services/comon/common.service';
+
 
 @Component({
   selector: 'app-login',
@@ -8,38 +9,21 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['../scss/auth-styles.scss'],
 })
 export class LoginPage implements OnInit {
+  loginForm: HTMLFormElement = null
+  userEmail: string = ""
+  userPassword: string = ""
+  constructor(private comServ: CommonService) { }
 
-  constructor(public loadingController: LoadingController) { }
-
-  ngOnInit() {
-  }
-
-  async presentLoadingWithOptions(msg: string = "", duration: number = 2000, spinner: any = "circles") {
-    const loading = await this.loadingController.create({
-      spinner: spinner,
-      duration: duration,
-      message: msg,
-      translucent: true,
-      cssClass: 'app-loading'
-    });
-    return await loading.present();
-    // const { role, data } = await loading.onDidDismiss();
-    // console.log(data)
-  }
-
+  ngOnInit() { }
   // handle login for submit
   handleSubmit(ev: KeyboardEvent): void {
     ev.preventDefault()
     const user = 'admin'
     const pass = 'admin'
-
     const username = ev.target['username'].value.toLowerCase()
     const password = ev.target['password'].value
-
-    this.presentLoadingWithOptions()
-
     if (username !== '' && username === user && password !== '' && password === pass) {
-      console.log("object")
+      console.log(this.loginForm)
     } else {
       console.log("Username and password is required")
     }

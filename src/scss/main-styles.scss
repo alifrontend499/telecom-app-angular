@@ -6,6 +6,10 @@
 :root {
     --ion-font-family: 'proxima-regular';
     --border-color: #dedede;
+    --error-color: #D8000C;
+    --success-color: #4F8A10;
+    --error-background: #FFBABA;
+    --success-background: #DFF2BF;
 }
 
 // header styles
@@ -102,6 +106,14 @@ ion-item {
             margin-bottom: 25px;
         }
     }
+    &.error {
+        // background-color: var(--error-background);
+        --background: var(--error-background);
+    }
+    &.success {
+        // background-color: var(--error-success);
+        --background: var(--success-background);
+    }
 }
 
 // ion grid styles
@@ -112,6 +124,27 @@ ion-grid {
 
         ion-col {
             padding: 0 5px 10px;
+        }
+    }
+}
+
+// default input message
+.app-input-msg-col {
+    position: relative;
+    font-size: 13px;
+    font-weight: bold;
+    display: none;
+    &.alittle-top {
+        top: -20px;
+    }
+
+    .col {
+        &.error {
+            color: var(--error-color);
+        }
+
+        &.success {
+            color: var(--error-success);
         }
     }
 }
