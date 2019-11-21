@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/_services/comon/common.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
 	selector: 'app-step-one',
@@ -7,7 +8,7 @@ import { CommonService } from 'src/app/_services/comon/common.service';
 	styleUrls: ['./step-one.page.scss', '../device-details.page.scss'],
 })
 export class StepOnePage implements OnInit {
-	constructor(private comServ: CommonService) { }
+	constructor(private comServ: CommonService, private barcodeScanner: BarcodeScanner) { }
 	// device modal
 	deviceModal: Array<Object> = [
 		{ name: 'iphone' },
@@ -31,19 +32,44 @@ export class StepOnePage implements OnInit {
 	]
 
 	mobileImages: Array<string> = [
-		"https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-		"https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-		"https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-		"https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTS0Ple5hMLlfZyJx3YJiN3q-QFQ4lfcdEoMj7ps2c0XbTZnbdt",
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsUCeTtykhzsGrODsXn_T0yzDtyo7LdPogCAl6QCPnZvKOgiOk"
 	]
 
 
 
+	// message after image loaded
 	imgLoaded(): void {
 		this.comServ.showToast("Image added successfully")
 	}
 
+	// opening camera clicking image
+	clickImage(): void {
+		this.comServ.clickImg().then(res => {
+			this.mobileImages.push(res)
+		})
+	}
 
+	// delete image
+	deleteImg(id: number): void {
+		this.mobileImages.splice(id, 1)
+	}
+
+	barcodeVal: string = ''
+	newBarcode: any;
+	scanBarcode(ev: KeyboardEvent) {
+		this.barcodeScanner.scan().then(barcodeData => {
+			this.newBarcode = barcodeData
+			if (barcodeData.cancelled !== false) {
+				this.barcodeVal = barcodeData.text
+			}
+			if (barcodeData.cancelled) {
+				this.comServ.showToast('Operation canceled')
+			}
+		}).catch(err => {
+			console.log('Error', err);
+		});
+	}
 	ngOnInit() {
 	}
 

@@ -50,10 +50,14 @@
 								</ion-item>
 							</ion-col>
 							<ion-col size="12">
-								<ion-item class="form-group">
-									<ion-input type="number" name="imei-no" placeholder="IMEI No. / Serial No." max="16"
-										maxlength="16"></ion-input>
+								<ion-item class="form-group with-icon position-relative">
+									<ion-input name="imei-no" placeholder="IMEI No. / Serial No."
+										[(value)]="barcodeVal"></ion-input>
+									<ion-button class="m-0 position-absolute input-icon" (click)="scanBarcode($event)">
+										<ion-icon name="camera"></ion-icon>
+									</ion-button>
 								</ion-item>
+								{{newBarcode | json}}
 							</ion-col>
 							<ion-col size="12">
 								<app-accordian accordHeader="Description" accordIsShow={{true}}>
@@ -144,18 +148,19 @@
 												class="item">
 												<div class="inner position-relative d-flex align-items-center justify-content-center"
 													[attr.data-key]="i">
-													<ion-img [src]="img" alt="mobile-img" onIonImgDidLoad="imgLoaded()">
+													<ion-img [src]="img" alt="mobile-img" (ionImgDidLoad)="imgLoaded()">
 													</ion-img>
 													<ion-button color="primary"
-														class="m-0 position-absolute img-close-icon">
+														class="m-0 position-absolute img-close-icon"
+														(click)="deleteImg(i)">
 														<ion-icon name="close"></ion-icon>
 													</ion-button>
 												</div>
 											</ion-col>
 										</ion-row>
 									</ion-grid>
-									<ion-button color="primary" expand="block" click="m-0 select-img-button"
-										(click)="clickImage">
+									<ion-button color="primary" expand="block" class="m-0 select-img-button"
+										(click)="clickImage()">
 										<span>add mobile images</span>
 										<ion-icon name="add" class="round-icon"></ion-icon>
 									</ion-button>
