@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 
 @Injectable({
 	providedIn: 'root'
@@ -41,5 +41,20 @@ export class CommonService {
 	// ionic toast
 	showIonicToast(data: Object): Promise<HTMLIonToastElement> {
 		return this.toastController.create(data)
+	}
+
+	// click image
+	clickImg(quality: number = 90, allowEditing: boolean = false): Promise<string> {
+		return (async () => {
+			const { Camera } = Plugins;
+			const image = await Camera.getPhoto({
+				quality: quality,
+				allowEditing: allowEditing,
+				resultType: CameraResultType.Uri,
+				source: CameraSource.Camera
+			});
+			var newImageUrlOrg: string = image.webPath;
+			return newImageUrlOrg
+		})()
 	}
 }

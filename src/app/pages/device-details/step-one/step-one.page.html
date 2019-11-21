@@ -1,0 +1,179 @@
+<ion-header class="app-header head-device-details-step-one">
+	<ion-toolbar class="app-header-toolbar">
+		<!-- <ion-buttons slot="start">
+			<ion-back-button defaultHref="/"></ion-back-button>
+		</ion-buttons> -->
+		<ion-title>Device Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content-device-details-step-one">
+	<div class="app-device-details">
+		<div class="app-device-details step-one">
+			<div class="app-device-details-form">
+				<form action="#" id="stepOneForm" (submit)="handleSubmit($event)">
+					<ion-grid class="app-grid-gap-5">
+						<ion-row>
+							<ion-col size="12">
+								<ion-item class="form-group">
+									<ion-label>Model</ion-label>
+									<ion-select name="device-modal">
+										<ion-select-option *ngFor="let modal of deviceModal" [value]="modal.name">
+											{{modal.name}}
+										</ion-select-option>
+									</ion-select>
+								</ion-item>
+								<!-- <div class="app-input-msg-col alittle-top d-block">
+									<div class='col error'>
+										Username is required
+									</div>
+								</div> -->
+							</ion-col>
+							<ion-col size="12">
+								<ion-item class="form-group">
+									<ion-label>Color</ion-label>
+									<ion-select name="device-modal">
+										<ion-select-option *ngFor="let modal of deviceColor" [value]="modal.name">
+											{{modal.name}}
+										</ion-select-option>
+									</ion-select>
+								</ion-item>
+							</ion-col>
+							<ion-col size="12">
+								<ion-item class="form-group">
+									<ion-label>Storage</ion-label>
+									<ion-select name="device-modal">
+										<ion-select-option *ngFor="let modal of deviceStorage" [value]="modal.name">
+											{{modal.name + "gb"}}
+										</ion-select-option>
+									</ion-select>
+								</ion-item>
+							</ion-col>
+							<ion-col size="12">
+								<ion-item class="form-group">
+									<ion-input type="number" name="imei-no" placeholder="IMEI No. / Serial No." max="16"
+										maxlength="16"></ion-input>
+								</ion-item>
+							</ion-col>
+							<ion-col size="12">
+								<app-accordian accordHeader="Description" accordIsShow={{true}}>
+									<div class="mobile-description">
+										<div class="item">
+											<div class="item-inner d-flex">
+												<p class="head">Charger</p>
+												<div class="options">
+													<div class="labels">
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-charger' class="d-none">
+															<span class="text d-block">Origional</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-charger' class="d-none">
+															<span class="text d-block">Non Origional</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-charger' class="d-none">
+															<span class="text d-block">Not Available</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="item">
+											<div class="item-inner d-flex">
+												<p class="head">Earphone</p>
+												<div class="options">
+													<div class="labels">
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-earphone' class="d-none">
+															<span class="text d-block">Origional</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-earphone' class="d-none">
+															<span class="text d-block">Non Origional</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-earphone' class="d-none">
+															<span class="text d-block">Not Available</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="item">
+											<div class="item-inner d-flex">
+												<p class="head">Warrenty</p>
+												<div class="options">
+													<div class="labels">
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-warrenty' class="d-none">
+															<span class="text d-block">Yes</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+														<label
+															class="app-custom-radio d-inline-block position-relative ion-activatable">
+															<input type="radio" name='has-warrenty' class="d-none">
+															<span class="text d-block">No</span>
+															<ion-ripple-effect></ion-ripple-effect>
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</app-accordian>
+							</ion-col>
+							<ion-col size="12">
+								<div class="selected-img">
+									<ion-grid class="app-grid-gap-5">
+										<ion-row>
+											<ion-col *ngFor="let img of mobileImages; let i = index" size="4"
+												class="item">
+												<div class="inner position-relative d-flex align-items-center justify-content-center"
+													[attr.data-key]="i">
+													<ion-img [src]="img" alt="mobile-img" onIonImgDidLoad="imgLoaded()">
+													</ion-img>
+													<ion-button color="primary"
+														class="m-0 position-absolute img-close-icon">
+														<ion-icon name="close"></ion-icon>
+													</ion-button>
+												</div>
+											</ion-col>
+										</ion-row>
+									</ion-grid>
+									<ion-button color="primary" expand="block" click="m-0 select-img-button"
+										(click)="clickImage">
+										<span>add mobile images</span>
+										<ion-icon name="add" class="round-icon"></ion-icon>
+									</ion-button>
+								</div>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</form>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer class=" app-footer next-btn foot-device-details-step-one">
+	<ion-toolbar class="app-footer-toolbar">
+		<ion-button color="primary" expand="block" class="m-0">
+			<span class="text-uppercase">next</span>
+			<ion-icon name="arrow-forward" class="round-icon"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

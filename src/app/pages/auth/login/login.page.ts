@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonService } from 'src/app/_services/comon/common.service';
-import { Plugins } from '@capacitor/core'
+import { Component, OnInit } from '@angular/core'
+import { CommonService } from 'src/app/_services/comon/common.service'
+import { Router } from '@angular/router'
 
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
 	loginForm: HTMLFormElement = null
 	userName: string = ""
 	userPassword: string = ""
-	constructor(private comServ: CommonService) { }
+	constructor(private comServ: CommonService, private router: Router) { }
 
 	ngOnInit() {
 
@@ -30,19 +30,21 @@ export class LoginPage implements OnInit {
 			setTimeout(() => {
 				this.comServ.hideLoading()
 				this.comServ.showToast("Login Successfull!")
+				// navigate to device details
+				this.router.navigate(['/device-details'])
 			}, 1200);
 		} else {
 			setTimeout(() => {
 				this.comServ.hideLoading()
 				this.comServ.showIonicToast({
-					message: 'Username or Password is invalid',
+					message: 'invalid Username or Password',
 					duration: 3000,
 					role: 'cancel',
 					color: 'danger',
 					cssClass: "app-ionic-toast"
 				}).then((res: any) => {
 					res.present()
-				})
+				})				
 			}, 1300);
 		}
 
