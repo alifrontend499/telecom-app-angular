@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/_services/comon/common.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-step-one',
@@ -8,7 +9,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 	styleUrls: ['./step-one.page.scss', '../device-details.page.scss'],
 })
 export class StepOnePage implements OnInit {
-	constructor(private comServ: CommonService, private barcodeScanner: BarcodeScanner) { }
+	constructor(private comServ: CommonService, private barcodeScanner: BarcodeScanner, private fb: FormBuilder) { }
 	// device modal
 	deviceModal: Array<Object> = [
 		{ name: 'iphone' },
@@ -31,10 +32,28 @@ export class StepOnePage implements OnInit {
 		{ name: '256' }
 	]
 
-	mobileImages: Array<string> = [
-		"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTS0Ple5hMLlfZyJx3YJiN3q-QFQ4lfcdEoMj7ps2c0XbTZnbdt",
-		"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsUCeTtykhzsGrODsXn_T0yzDtyo7LdPogCAl6QCPnZvKOgiOk"
-	]
+	mobileImages: Array<string> = []
+
+
+	// form validations
+	stepOneForm = this.fb.group({
+		deviceModal: ["", Validators.required],
+		deviceColor: ["", Validators.required],
+		deviceStorage: ["", Validators.required],
+		deviceIMEI: ["", Validators.required],
+		deviceHasCharger: ["origional", Validators.required],
+		deviceHasEarphone: ["origional", Validators.required],
+		deviceHasWarrenty: ["no", Validators.required],
+	})
+	// stepOneForm = new FormGroup({
+	// 	deviceModal: new FormControl(''),
+	// 	deviceColor: new FormControl(''),
+	// 	deviceStorage: new FormControl(''),
+	// 	deviceIMEI: new FormControl(''),
+	// 	deviceHasCharger: new FormControl('origional'),
+	// 	deviceHasEarphone: new FormControl('origional'),
+	// 	deviceHasWarrenty: new FormControl('yes'),
+	// });
 
 
 
@@ -52,23 +71,35 @@ export class StepOnePage implements OnInit {
 
 	// delete image
 	deleteImg(id: number): void {
-		this.mobileImages.splice(id, 1)
+		if (id) {
+			this.mobileImages.splice(id, 1)
+		}
 	}
 
-	barcodeVal: string = ''
-	newBarcode: any;
 	scanBarcode(ev: KeyboardEvent) {
 		this.barcodeScanner.scan().then(barcodeData => {
-			this.newBarcode = barcodeData
-			if (barcodeData.cancelled !== false) {
-				this.barcodeVal = barcodeData.text
+			if (barcodeData.cancelled !== true && barcodeData.format !== "QR_CODE") {
+				// this.stepOneForm.controls['deviceIMEI'].setValue(barcodeData.text)
+				this.stepOneForm.patchValue({
+					deviceIMEI: barcodeData.text
+				})
 			}
 			if (barcodeData.cancelled) {
 				this.comServ.showToast('Operation canceled')
 			}
+			if (barcodeData.format === "QR_CODE") {
+				this.comServ.showToast('Please select barcode of IMEI no.')
+			}
 		}).catch(err => {
 			console.log('Error', err);
 		});
+	}
+
+	submitForm(ev: KeyboardEvent): void {
+		ev.preventDefault()
+	}
+	handleSubmit(form: HTMLFormElement) {
+		console.log(form)
 	}
 	ngOnInit() {
 	}
