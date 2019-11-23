@@ -158,12 +158,23 @@ ion-grid {
     }
 
     .col {
+        >ion-icon {
+            margin-right: 5px;
+            font-size: 15px;
+            position: relative;
+            top: -1px;
+        }
+
         &.error {
             color: var(--error-color);
         }
 
         &.success {
             color: var(--error-success);
+        }
+
+        &.simple {
+            color: #999;
         }
     }
 }

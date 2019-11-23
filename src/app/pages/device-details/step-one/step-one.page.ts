@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonService } from 'src/app/_services/comon/common.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-step-one',
@@ -9,7 +10,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 	styleUrls: ['./step-one.page.scss', '../device-details.page.scss'],
 })
 export class StepOnePage implements OnInit {
-	constructor(private comServ: CommonService, private barcodeScanner: BarcodeScanner, private fb: FormBuilder) { }
+	constructor(
+		private comServ: CommonService,
+		private barcodeScanner: BarcodeScanner,
+		private fb: FormBuilder,
+		private router: Router
+	) { }
+
 	// device modal
 	deviceModal: Array<Object> = [
 		{ name: 'iphone' },
@@ -34,29 +41,6 @@ export class StepOnePage implements OnInit {
 
 	mobileImages: Array<string> = []
 
-
-	// form validations
-	stepOneForm = this.fb.group({
-		deviceModal: ["", Validators.required],
-		deviceColor: ["", Validators.required],
-		deviceStorage: ["", Validators.required],
-		deviceIMEI: ["", Validators.required],
-		deviceHasCharger: ["origional", Validators.required],
-		deviceHasEarphone: ["origional", Validators.required],
-		deviceHasWarrenty: ["no", Validators.required],
-	})
-	// stepOneForm = new FormGroup({
-	// 	deviceModal: new FormControl(''),
-	// 	deviceColor: new FormControl(''),
-	// 	deviceStorage: new FormControl(''),
-	// 	deviceIMEI: new FormControl(''),
-	// 	deviceHasCharger: new FormControl('origional'),
-	// 	deviceHasEarphone: new FormControl('origional'),
-	// 	deviceHasWarrenty: new FormControl('yes'),
-	// });
-
-
-
 	// message after image loaded
 	imgLoaded(): void {
 		this.comServ.showToast("Image added successfully")
@@ -71,11 +55,10 @@ export class StepOnePage implements OnInit {
 
 	// delete image
 	deleteImg(id: number): void {
-		if (id) {
-			this.mobileImages.splice(id, 1)
-		}
+		this.mobileImages.splice(id, 1)
 	}
 
+	// scaning barcode
 	scanBarcode(ev: KeyboardEvent) {
 		this.barcodeScanner.scan().then(barcodeData => {
 			if (barcodeData.cancelled !== true && barcodeData.format !== "QR_CODE") {
@@ -95,11 +78,27 @@ export class StepOnePage implements OnInit {
 		});
 	}
 
+	@ViewChild('stepOneFORMSubmitBtn', { static: false }) stepOneFORMSubmitBtn: ElementRef
+
+	// form validations
+	stepOneForm = this.fb.group({
+		deviceModal: ["", Validators.required],
+		deviceColor: ["", Validators.required],
+		deviceStorage: ["", Validators.required],
+		deviceIMEI: ["", Validators.required],
+		deviceHasCharger: ["", Validators.required],
+		deviceHasEarphone: ["", Validators.required],
+		deviceHasWarrenty: ["", Validators.required],
+	})
+	// submit form programatically
 	submitForm(ev: KeyboardEvent): void {
 		ev.preventDefault()
+		this.stepOneFORMSubmitBtn.nativeElement.click()
 	}
-	handleSubmit(form: HTMLFormElement) {
-		console.log(form)
+	handleSubmit(ev: any) {
+		ev.preventDefault()
+		// console.log(this.stepOneForm.value)
+		this.router.navigate(['/device-details/step-two'])
 	}
 	ngOnInit() {
 	}

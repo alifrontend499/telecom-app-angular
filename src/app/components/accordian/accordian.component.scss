@@ -7,9 +7,9 @@
         }
     }
 
-    &:not(:last-child) {
-        margin-bottom: 15px;
-    }
+    margin-bottom: 15px;
+    // &:not(:last-child) {
+    // }
 
     &.look-one {
         .app-accordian-heading {

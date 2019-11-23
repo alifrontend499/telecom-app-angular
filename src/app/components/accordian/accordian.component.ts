@@ -8,8 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AccordianComponent implements OnInit {
 
   @Input() accordIsShow: boolean = false
+  @Input() noMarginBottom: boolean = false
   @Input() accordLook: string = 'look-one'
   @Input() accordHeader: string
+  @Input() accordSubHead: string
 
 
   toggleContent(ev: KeyboardEvent): void {
