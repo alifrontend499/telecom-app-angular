@@ -1,9 +1,207 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-details</ion-title>
-  </ion-toolbar>
+<ion-header class="app-header head-user-details">
+	<ion-toolbar class="app-header-toolbar">
+		<!-- <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons> -->
+		<ion-title>Device Details</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding content-user-details">
+	<div class="app-device-details">
+		<div class="app-user-details">
+			<div class="app-user-details-inner">
+				<div class="app-user-details-form">
+					<form action="#" id="userDetailsForm">
+						<ion-grid class="app-grid-gap-5">
+							<ion-row>
+								<ion-col size="6">
+									<ion-item class="form-group">
+										<ion-input name="name" placeholder="Name"></ion-input>
+									</ion-item>
+								</ion-col>
+								<ion-col size="6" class="align-self-center">
+									<div class="d-table mx-auto">
+										<label class="app-custom-radio d-inline-block position-relative ion-activatable"
+											style="margin-right: 5px">
+											<input type="radio" class="d-none" value="female">
+											<span class="text d-block">Male</span>
+											<ion-ripple-effect></ion-ripple-effect>
+										</label>
+										<label
+											class="app-custom-radio d-inline-block position-relative ion-activatable">
+											<input type="radio" class="d-none" value="female">
+											<span class="text d-block">Female</span>
+											<ion-ripple-effect></ion-ripple-effect>
+										</label>
+									</div>
+								</ion-col>
+								<ion-col size="12">
+									<ion-item class="form-group">
+										<ion-input name="phone-number" placeholder="Phone Number"></ion-input>
+									</ion-item>
+								</ion-col>
+								<ion-col size="12">
+									<ion-item class="form-group">
+										<ion-textarea name="address" placeholder="Address"></ion-textarea>
+									</ion-item>
+								</ion-col>
+								<ion-col size="12">
+									<ion-item class="form-group">
+										<ion-input type="number" name="purchase-price" placeholder="Purchase price">
+										</ion-input>
+									</ion-item>
+								</ion-col>
+								<ion-col size="12">
+									<ion-item class="form-group">
+										<ion-input name="user-name" placeholder="User Name"></ion-input>
+									</ion-item>
+								</ion-col>
+								<ion-col size="12">
+									<ion-item class="form-group">
+										<ion-input name="assigned-technician-name"
+											placeholder="Assigned Technician Name"></ion-input>
+									</ion-item>
+								</ion-col>
+								<ion-col size="12">
+									<app-accordian accordHeader="ID Proof" accordIsShow={{true}}
+										noMarginBottom={{true}}>
+										<div class="id-proof">
+											<div class="d-flex flex-wrap align-items-start">
+												<label
+													class="app-custom-radio d-inline-block position-relative ion-activatable">
+													<input type="radio" class="d-none">
+													<span
+														class="text d-flex align-items-center justify-content-center text-center">D/License</span>
+													<ion-ripple-effect></ion-ripple-effect>
+												</label>
+												<label
+													class="app-custom-radio d-inline-block position-relative ion-activatable">
+													<input type="radio" class="d-none">
+													<span
+														class="text d-flex align-items-center justify-content-center text-center">Adhar</span>
+													<ion-ripple-effect></ion-ripple-effect>
+												</label>
+												<label
+													class="app-custom-radio d-inline-block position-relative ion-activatable">
+													<input type="radio" class="d-none">
+													<span
+														class="text d-flex align-items-center justify-content-center text-center">passport</span>
+													<ion-ripple-effect></ion-ripple-effect>
+												</label>
+												<label
+													class="app-custom-radio d-inline-block position-relative ion-activatable">
+													<input type="radio" class="d-none">
+													<span
+														class="text d-flex align-items-center justify-content-center text-center">Other</span>
+													<ion-ripple-effect></ion-ripple-effect>
+												</label>
+												<label
+													class="app-custom-radio d-inline-block position-relative ion-activatable">
+													<input type="radio" class="d-none">
+													<span
+														class="text d-flex align-items-center justify-content-center text-center">
+														Not <br />
+														Available
+													</span>
+													<ion-ripple-effect></ion-ripple-effect>
+												</label>
+											</div>
+											<div class="selected-img-block proof-img position-relative" *ngIf="idProof.length">
+												<p class="head">ID Proof</p>
+												<ion-img  [src]="idProof">
+												</ion-img>
+												<ion-button color="primary"
+													class="m-0 position-absolute img-close-icon">
+													<ion-icon name="close"></ion-icon>
+												</ion-button>
+											</div>
+										</div>
+										<div class="phone-and-user-info">
+											<div class="d-flex">
+												<div class="item">
+													<div class="inner text-center position-relative ion-activatable">
+														<ion-icon name="camera" class="w-100"></ion-icon>
+														<span className="d-block">
+															Phone
+															<span class="d-block">
+																Seller Picture
+															</span>
+														</span>
+														<ion-ripple-effect></ion-ripple-effect>
+													</div>
+												</div>
+												<div class="item">
+													<div class="inner text-center position-relative ion-activatable">
+														<ion-icon name="camera" class="w-100"></ion-icon>
+														<span className="d-block">
+															Customer
+															<span class="d-block">
+																Signed Agreement
+															</span>
+														</span>
+														<ion-ripple-effect></ion-ripple-effect>
+													</div>
+												</div>
+												<div class="item">
+													<div class="inner text-center position-relative ion-activatable">
+														<ion-icon name="camera" class="w-100"></ion-icon>
+														<span className="d-block">
+															Phone
+															<span class="d-block">
+																IMEI Picture
+															</span>
+														</span>
+														<ion-ripple-effect></ion-ripple-effect>
+													</div>
+												</div>
+											</div>
+											<div class="imgs-data">
+												<div class="selected-img-block proof-img position-relative" *ngIf="sellerPicture.length">
+													<p class="head">Phone Seller Picture</p>
+													<ion-img [src]="sellerPicture">
+													</ion-img>
+													<ion-button color="primary"
+														class="m-0 position-absolute img-close-icon">
+														<ion-icon name="close"></ion-icon>
+													</ion-button>
+												</div>
+												<div class="selected-img-block proof-img position-relative" *ngIf="customerAgreement.length">
+													<p class="head">Customer Signed Agreement</p>
+													<ion-img [src]="customerAgreement">
+													</ion-img>
+													<ion-button color="primary"
+														class="m-0 position-absolute img-close-icon">
+														<ion-icon name="close"></ion-icon>
+													</ion-button>
+												</div>
+												<div class="selected-img-block proof-img position-relative" *ngIf="phoneIMEI.length">
+													<p class="head">Phone IMEI Picture</p>
+													<ion-img [src]="phoneIMEI">
+													</ion-img>
+													<ion-button color="primary"
+														class="m-0 position-absolute img-close-icon">
+														<ion-icon name="close"></ion-icon>
+													</ion-button>
+												</div>
+											</div>
+										</div>
+									</app-accordian>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </ion-content>
+
+<ion-footer class=" app-footer next-btn foot-user-details">
+	<ion-toolbar class="app-footer-toolbar">
+		<ion-button color="primary" expand="block" class="m-0">
+			<span class="text-uppercase">next</span>
+			<ion-icon name="arrow-forward" class="round-icon"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

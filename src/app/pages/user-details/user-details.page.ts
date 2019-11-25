@@ -9,7 +9,13 @@ export class UserDetailsPage implements OnInit {
 
   constructor() { }
 
+  idProof: string = ""
+  sellerPicture: string = ""
+  customerAgreement: string = ""
+  phoneIMEI: string = ""
+
   ngOnInit() {
+    console.log(this.sellerPicture.length)
   }
 
 }
