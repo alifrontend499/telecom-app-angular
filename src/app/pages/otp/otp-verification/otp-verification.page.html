@@ -19,30 +19,33 @@
 				</p>
 			</div>
 			<div class="otp-img-form">
-				<form action="#" id="otpForm" #otpForm="ngForm" (submit)="handleSubmit($event)">
+				<form action="#" id="otpForm" (submit)="handleSubmit($event)" [formGroup]="otpVerificationForm">
 					<ion-grid class="app-grid-gap-5">
 						<ion-row>
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
-									<ion-input type="number" name="mobile-no" max="1" maxlength="1" required>
+									<ion-input type="tel" name="mobile-no" maxlength="1" #inputOneField
+										[autofocus]="true" (ionChange)="handleChangeInputOne($event)" formControlName="fieldOne">
 									</ion-input>
 								</ion-item>
 							</ion-col>
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
-									<ion-input type="number" name="mobile-no" max="1" maxlength="1" required>
+									<ion-input type="tel" name="mobile-no" maxlength="1" #inputTwoField
+										(ionChange)="handleChangeInputTwo($event)" formControlName="fieldTwo">
 									</ion-input>
 								</ion-item>
 							</ion-col>
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
-									<ion-input type="number" name="mobile-no" max="1" maxlength="1" required>
+									<ion-input type="tel" name="mobile-no" maxlength="1" #inputThreeField
+										(ionChange)="handleChangeInputThree($event)" formControlName="fieldThree">
 									</ion-input>
 								</ion-item>
 							</ion-col>
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
-									<ion-input type="number" name="mobile-no" max="1" maxlength="1" required>
+									<ion-input type="tel" name="mobile-no" maxlength="1" #inputFourField formControlName="fieldFour">
 									</ion-input>
 								</ion-item>
 							</ion-col>
@@ -53,7 +56,7 @@
 										<span class="send-otp-again text-uppercase">resend otp</span>
 									</p>
 								</div>
-								<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height">
+								<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height" [disabled]="otpVerificationForm.invalid">
 									<span>Verify and Proceed</span>
 								</ion-button>
 							</ion-col>
