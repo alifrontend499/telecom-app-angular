@@ -30,7 +30,7 @@
 								<ion-icon name="lock" color="primary"></ion-icon>
 							</ion-label>
 							<ion-input name="password" type="password" placeholder="Password" #password="ngModel"
-								[(ngModel)]="userPassword" required>
+								[(ngModel)]="userPassword" required min="10">
 							</ion-input>
 						</ion-item>
 						<div class="app-input-msg-col alittle-top"

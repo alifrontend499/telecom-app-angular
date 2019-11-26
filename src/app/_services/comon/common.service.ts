@@ -53,7 +53,8 @@ export class CommonService {
 			const image = await Camera.getPhoto({
 				quality: quality,
 				allowEditing: allowEditing,
-				resultType: CameraResultType.Uri
+				resultType: CameraResultType.Uri,
+				source: CameraSource.Camera
 			});
 			var newImageUrlOrg: string = image.webPath;
 			return newImageUrlOrg

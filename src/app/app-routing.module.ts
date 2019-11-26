@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'user-details',
     loadChildren: () => import('./pages/user-details/user-details.module').then( m => m.UserDetailsPageModule)
   },
+  {
+    path: 'otp',
+    loadChildren: () => import('./pages/otp/otp.module').then( m => m.OtpPageModule)
+  },
 
 
 ];
