@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
 	}
 	// handle submit for login
 	handleSubmit(ev: KeyboardEvent): void {
-		ev.preventDefault()
+		// ev.preventDefault()
 		const user = 'admin'
 		const pass = 'admin'
 		const username = this.userName.toLowerCase()
@@ -44,15 +44,15 @@ export class LoginPage implements OnInit {
 					cssClass: "app-ionic-toast"
 				}).then((res: any) => {
 					res.present()
-				})				
+				})
 			}, 1300);
 		}
 
 	}
 
 	// handle login button click  
-	handleLoginClick(ev: any): void {
-		// ev.preventDefault()
-	}
+	// handleLoginClick(ev: any): void {
+	// 	ev.preventDefault()
+	// }
 
 }

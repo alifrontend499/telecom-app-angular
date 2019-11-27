@@ -49,7 +49,7 @@ export class UserDetailsPage implements OnInit {
 	takePictureForIdProof(ev: KeyboardEvent): void {
 		this.comServ.clickImg().then(res => {
 			this.showData = res
-			if(res.length) {
+			if (res.length) {
 				this.idProof = res
 			} else {
 				this.userDetailsForm.controls['idProof'].setValue("")
@@ -118,7 +118,15 @@ export class UserDetailsPage implements OnInit {
 
 	handleSubmit(ev: any) {
 		ev.preventDefault()
-		this.router.navigate(['/otp'])
+		if (
+			(this.userDetailsForm.valid) &&
+			(this.idProof.length >= 1) &&
+			(this.sellerPicture.length >= 1) &&
+			(this.customerAgreement.length >= 1) &&
+			(this.phoneIMEI.length >= 1)
+		) {
+			this.router.navigate(['/otp'])
+		}
 	}
 
 	ngOnInit() {

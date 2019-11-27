@@ -28,6 +28,7 @@
     "@ionic/angular": "^4.7.1",
     "@ionic/pwa-elements": "^1.4.1",
     "@ionic/storage": "^2.2.0",
+    "cordova-sqlite-storage": "^3.4.0",
     "core-js": "^2.5.4",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~6.5.1",

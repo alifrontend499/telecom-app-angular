@@ -10,7 +10,7 @@
 					<ion-img src="assets/images/logo.png"></ion-img>
 				</div>
 				<div class="auth-form">
-					<form action="#" (submit)="handleSubmit($event)" #loginForm="ngForm">
+					<form action="#" (keyup.enter)="handleSubmit($event)" (submit)="handleSubmit($event)" #loginForm="ngForm">
 						<ion-item class="form-group">
 							<ion-label>
 								<ion-icon name="person" color="primary"></ion-icon>
@@ -43,8 +43,7 @@
 							<a href="" color="secondary">Forgot password?</a>
 						</div>
 						<div class="submit-btn d-flex justify-content-center">
-							<ion-button type="submit" color="primary" class="app-def-btn"
-								(click)="handleLoginClick($event)" [disabled]="!loginForm.valid">
+							<ion-button type="submit" color="primary" class="app-def-btn" [disabled]="!loginForm.valid">
 								Sign in
 							</ion-button>
 						</div>

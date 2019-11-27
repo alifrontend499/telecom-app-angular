@@ -82,9 +82,9 @@ export class StepOnePage implements OnInit {
 
 	// form validations
 	stepOneForm = this.fb.group({
-		deviceModal: ["", Validators.required],
-		deviceColor: ["", Validators.required],
-		deviceStorage: ["", Validators.required],
+		deviceModal: ["samsung", Validators.required],
+		deviceColor: ["red", Validators.required],
+		deviceStorage: ["32", Validators.required],
 		deviceIMEI: ["", Validators.required],
 		deviceHasCharger: ["", Validators.required],
 		deviceHasEarphone: ["", Validators.required],
@@ -97,8 +97,10 @@ export class StepOnePage implements OnInit {
 	}
 	handleSubmit(ev: any) {
 		ev.preventDefault()
-		// console.log(this.stepOneForm.value)
-		this.router.navigate(['/device-details/step-two'])
+		// console.log(this.stepOneForm.valid)
+		if(this.stepOneForm.valid && this.mobileImages.length >= 1) {
+			this.router.navigate(['/device-details/step-two'])
+		}
 	}
 	ngOnInit() {
 	}
