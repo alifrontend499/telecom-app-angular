@@ -21,7 +21,8 @@
 			<div class="otp-img-form">
 				<form action="#" id="otpForm" #otpForm="ngForm" (submit)="handleSubmit($event)">
 					<ion-item class="form-group">
-						<ion-input type="number" name="mobile-no" placeholder="Enter Mobile No." #mobileNumber="ngModel" [(ngModel)]="mobile" required></ion-input>
+						<ion-input type="tel" name="mobile-no" placeholder="Enter Mobile No." #mobileNumber="ngModel"
+							[(ngModel)]="mobileNoVal" required></ion-input>
 					</ion-item>
 					<div class="app-input-msg-col alittle-top"
 						[class.d-block]="mobileNumber.invalid && mobileNumber.touched">
@@ -29,7 +30,8 @@
 							Mobile Number is required
 						</div>
 					</div>
-					<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height" [disabled]="!otpForm.valid">
+					<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height"
+						[disabled]="!otpForm.valid">
 						<span>Submit</span>
 					</ion-button>
 				</form>

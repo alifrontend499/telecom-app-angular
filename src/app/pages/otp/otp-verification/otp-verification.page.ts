@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IonInput, Platform } from '@ionic/angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { CommonService } from '../../../_services/comon/common.service';
 
 @Component({
 	selector: 'app-otp-verification',
@@ -12,7 +13,8 @@ export class OtpVerificationPage implements OnInit {
 	constructor(
 		public plt: Platform,
 		public storage: Storage,
-		public fb: FormBuilder
+		public fb: FormBuilder,
+		public comServ: CommonService,
 	) { }
 	mobileIcon: string = "assets/images/icons/icon-otp-mobile.png"
 	userPhone: number = 8427145040
@@ -45,8 +47,10 @@ export class OtpVerificationPage implements OnInit {
 	})
 
 	ngOnInit() {
-		this.plt.ready().then(() => {
-			this.storage.set('name', "Ali")
+		this.storage.get("otpMobileNumber").then(res => {
+			if (res) {
+				this.userPhone = res
+			}
 		})
 	}
 

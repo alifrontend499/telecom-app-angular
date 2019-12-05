@@ -82,9 +82,9 @@ export class StepOnePage implements OnInit {
 
 	// form validations
 	stepOneForm = this.fb.group({
-		deviceModal: ["samsung", Validators.required],
-		deviceColor: ["red", Validators.required],
-		deviceStorage: ["32", Validators.required],
+		deviceModal: ["", Validators.required],
+		deviceColor: ["", Validators.required],
+		deviceStorage: ["", Validators.required],
 		deviceIMEI: ["", Validators.required],
 		deviceHasCharger: ["", Validators.required],
 		deviceHasEarphone: ["", Validators.required],
