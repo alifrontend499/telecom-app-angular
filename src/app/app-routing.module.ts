@@ -3,22 +3,27 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)},
-  { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)},
+  { path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule), data: {title: 'Home'}},
+  { path: 'login', loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule), data: {title: 'Login'}},
   {
     path: 'device-details',
-    loadChildren: () => import('./pages/device-details/device-details.module').then( m => m.DeviceDetailsPageModule)
+    loadChildren: () => import('./pages/device-details/device-details.module').then( m => m.DeviceDetailsPageModule),
+    data: {title: 'Device Details'}
   },
   {
     path: 'user-details',
-    loadChildren: () => import('./pages/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+    loadChildren: () => import('./pages/user-details/user-details.module').then( m => m.UserDetailsPageModule),
+    data: {title: 'User Details'}
   },
   {
     path: 'otp',
-    loadChildren: () => import('./pages/otp/otp.module').then( m => m.OtpPageModule)
-  },  {
+    loadChildren: () => import('./pages/otp/otp.module').then( m => m.OtpPageModule),
+    data: {title: 'Otp'}
+  },
+  {
     path: 'added-successfully',
-    loadChildren: () => import('./pages/added-successfully/added-successfully.module').then( m => m.AddedSuccessfullyPageModule)
+    loadChildren: () => import('./pages/added-successfully/added-successfully.module').then( m => m.AddedSuccessfullyPageModule),
+    data: {title: 'Success'}
   },
 
 

@@ -14,8 +14,8 @@
 				<ion-img [src]="mobileIcon"></ion-img>
 				<p class="head">OTP Verification</p>
 				<p class="desc">
-					we will send you <span class="text" style="font-weight: bold; color: #000">+91
-						{{userPhone}}</span>
+					we will send you
+					<span class="text" style="font-weight: bold; color: #000">+91 {{userPhone}}</span>
 				</p>
 			</div>
 			<div class="otp-img-form">
@@ -25,7 +25,8 @@
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
 									<ion-input type="tel" name="mobile-no" maxlength="1" #inputOneField
-										[autofocus]="true" (ionChange)="handleChangeInputOne($event)" formControlName="fieldOne">
+										[autofocus]="true" (ionChange)="handleChangeInputOne($event)"
+										formControlName="fieldOne">
 									</ion-input>
 								</ion-item>
 							</ion-col>
@@ -45,7 +46,8 @@
 							</ion-col>
 							<ion-col size="3">
 								<ion-item class="form-group text-center">
-									<ion-input type="tel" name="mobile-no" maxlength="1" #inputFourField formControlName="fieldFour">
+									<ion-input type="tel" name="mobile-no" maxlength="1" #inputFourField
+										formControlName="fieldFour">
 									</ion-input>
 								</ion-item>
 							</ion-col>
@@ -56,7 +58,8 @@
 										<span class="send-otp-again text-uppercase">resend otp</span>
 									</p>
 								</div>
-								<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height" [disabled]="otpVerificationForm.invalid">
+								<ion-button type="submit" color="primary" expand="block" class="app-def-btn def-height"
+									[disabled]="otpVerificationForm.invalid">
 									<span>Verify and Proceed</span>
 								</ion-button>
 							</ion-col>

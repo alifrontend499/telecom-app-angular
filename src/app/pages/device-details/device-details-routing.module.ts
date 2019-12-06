@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path: 'step-one',
     loadChildren: () => import('./step-one/step-one.module').then(m => m.StepOnePageModule)
-  },  {
+  },
+  {
     path: 'step-two',
     loadChildren: () => import('./step-two/step-two.module').then( m => m.StepTwoPageModule)
   },

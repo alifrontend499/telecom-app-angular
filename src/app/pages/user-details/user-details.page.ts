@@ -48,7 +48,7 @@ export class UserDetailsPage implements OnInit {
 	// function for takePictureForIdProof
 	takePictureForIdProof(ev: KeyboardEvent): void {
 		this.comServ.clickImg().then(res => {
-			this.showData = res
+			// this.showData = res
 			if (res.length) {
 				this.idProof = res
 			} else {
@@ -96,7 +96,7 @@ export class UserDetailsPage implements OnInit {
 		this.phoneIMEI = ""
 	}
 
-	showData: any
+	// showData: any
 	// form validations
 	userDetailsForm = this.fb.group({
 		name: ["", Validators.required],
