@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { CommonService } from 'src/app/_services/comon/common.service'
 import { Router } from '@angular/router'
+import { AuthenticationService } from 'src/app/_services/auth/authentication.service'
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
 	loginForm: HTMLFormElement = null
 	userName: string = ""
 	userPassword: string = ""
-	constructor(private comServ: CommonService, private router: Router) { }
+	constructor(private comServ: CommonService, private router: Router, private authServ: AuthenticationService) { }
 
 	ngOnInit() {
 
@@ -29,9 +30,12 @@ export class LoginPage implements OnInit {
 		if (username !== '' && username === user && password !== '' && password === pass) {
 			setTimeout(() => {
 				this.comServ.hideLoading()
-				this.comServ.showToast("Login Successfull!")
-				// navigate to device details
-				this.router.navigate(['/device-details'])
+				this.authServ.login(username).then(res => {
+					console.log(res)
+					this.comServ.showToast("Login Successfull!")
+					// navigate to device details
+					this.router.navigate(['/device-details'])
+				})
 			}, 1200);
 		} else {
 			setTimeout(() => {

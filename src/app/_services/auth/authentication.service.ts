@@ -3,24 +3,39 @@ import { Platform } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 
+const TOKEN_KEY = 'auth-token'
+
 @Injectable({
 	providedIn: 'root'
 })
+
+
 export class AuthenticationService {
 	authenticationState = new BehaviorSubject(false)
+
 	constructor(private storage: Storage, private plt: Platform) { }
 
 	login(userName: string) {
-		// return this.storage.set()
+		if (userName) {
+			return this.storage.set(TOKEN_KEY, `Bearer:${userName}`).then(res => {
+				this.authenticationState.next(true)
+			})
+		}
 	}
 	logout() {
-
+		return this.storage.remove(TOKEN_KEY).then(res => {
+			this.authenticationState.next(false)
+		})
 	}
 	isAuthenticated() {
-
+		return this.authenticationState.value
 	}
 	checkToken() {
-
+		return this.storage.get(TOKEN_KEY).then(res => {
+			if(res) {
+				this.authenticationState.next(true)
+			}
+		})
 	}
 
 }

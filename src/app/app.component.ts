@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { AuthenticationService } from './_services/auth/authentication.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class AppComponent {
 		private statusBar: StatusBar,
 		private titleService: Title,
 		private router: Router,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private authServ: AuthenticationService
 	) {
 		this.initializeApp();
 	}
@@ -38,20 +40,24 @@ export class AppComponent {
 			this.statusBar.styleDefault();
 			this.splashScreen.hide();
 
+			// changing titles dynamically
 			const appTitle = this.titleService.getTitle();
-			this.router
-				.events.pipe(
-					filter(event => event instanceof NavigationEnd),
-					map(() => {
-						const child = this.activatedRoute.firstChild;
-						if (child.snapshot.data['title']) {
-							return child.snapshot.data['title'];
-						}
-						return appTitle;
-					})
-				).subscribe((ttl: string) => {
-					this.titleService.setTitle(ttl);
-				});
+			this.router.events.pipe(filter(event => event instanceof NavigationEnd), map(() => {
+				const child = this.activatedRoute.firstChild;
+				if (child.snapshot.data['title']) {
+					return child.snapshot.data['title'];
+				}
+				return appTitle;
+			})).subscribe((ttl: string) => {
+				this.titleService.setTitle(ttl);
+			});
+
+			// login process
+			this.authServ.authenticationState.subscribe(res => {
+				if (!res) {
+					this.router.navigate(['/login'])
+				}
+			})
 		});
 	}
 }
