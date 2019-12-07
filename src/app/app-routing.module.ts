@@ -15,17 +15,20 @@ const routes: Routes = [
   {
     path: 'user-details',
     loadChildren: () => import('./pages/user-details/user-details.module').then(m => m.UserDetailsPageModule),
-    data: { title: 'User Details' }
+    data: { title: 'User Details' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'otp',
     loadChildren: () => import('./pages/otp/otp.module').then(m => m.OtpPageModule),
-    data: { title: 'Otp' }
+    data: { title: 'Otp' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'added-successfully',
     loadChildren: () => import('./pages/added-successfully/added-successfully.module').then(m => m.AddedSuccessfullyPageModule),
-    data: { title: 'Success' }
+    data: { title: 'Success' },
+    canActivate: [AuthGuardService]
   },
 
 

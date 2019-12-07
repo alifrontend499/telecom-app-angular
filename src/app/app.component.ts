@@ -53,10 +53,16 @@ export class AppComponent {
 			});
 
 			// login process
-			this.authServ.authenticationState.subscribe(res => {
-				if (!res) {
-					this.router.navigate(['/login'])
-				}
+			// this.authServ.authenticationState.subscribe(res => {
+			// 	console.log(res)
+			// 	if (!res) {
+			// 		this.router.navigate(['/login'])
+			// 	}
+			// })
+			this.authServ.checkToken().then(() => {
+				// if (!this.authServ.isAuthenticated()) {
+				// 	this.router.navigate(['/login'])
+				// }
 			})
 		});
 	}

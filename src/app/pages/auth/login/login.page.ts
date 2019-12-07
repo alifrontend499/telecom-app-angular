@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 			setTimeout(() => {
 				this.comServ.hideLoading()
 				this.authServ.login(username).then(res => {
-					console.log(res)
+					// console.log(res)
 					this.comServ.showToast("Login Successfull!")
 					// navigate to device details
 					this.router.navigate(['/device-details'])

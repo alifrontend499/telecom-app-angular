@@ -30,12 +30,11 @@ export class AuthenticationService {
 	isAuthenticated() {
 		return this.authenticationState.value
 	}
-	checkToken() {
-		return this.storage.get(TOKEN_KEY).then(res => {
-			if(res) {
-				this.authenticationState.next(true)
-			}
-		})
+	async checkToken() {
+		const res = await this.storage.get(TOKEN_KEY);
+		if (res) {
+			this.authenticationState.next(true);
+		}
 	}
 
 }
