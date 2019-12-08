@@ -32,6 +32,7 @@ export class AuthenticationService {
 	}
 	async checkToken() {
 		const res = await this.storage.get(TOKEN_KEY);
+		console.log(res)
 		if (res) {
 			this.authenticationState.next(true);
 		}

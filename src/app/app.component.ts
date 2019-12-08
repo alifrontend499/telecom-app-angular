@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { AuthenticationService } from './_services/auth/authentication.service';
+import { HistoryService } from './_services/history/history.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { AuthenticationService } from './_services/auth/authentication.service';
 })
 export class AppComponent {
 	title: string = 'Home'
+	private history = [];
 
 	constructor(
 		private platform: Platform,
@@ -25,9 +27,11 @@ export class AppComponent {
 		private titleService: Title,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		private authServ: AuthenticationService
+		private authServ: AuthenticationService,
+		private historyServ: HistoryService
 	) {
 		this.initializeApp();
+		historyServ.loadRoutingHistory()
 	}
 
 	setDocTitle(title: string) {
@@ -52,17 +56,9 @@ export class AppComponent {
 				this.titleService.setTitle(ttl);
 			});
 
-			// login process
-			// this.authServ.authenticationState.subscribe(res => {
-			// 	console.log(res)
-			// 	if (!res) {
-			// 		this.router.navigate(['/login'])
-			// 	}
-			// })
-			this.authServ.checkToken().then(() => {
-				// if (!this.authServ.isAuthenticated()) {
-				// 	this.router.navigate(['/login'])
-				// }
+
+			this.authServ.checkToken().then(res => {
+				console.log(res)
 			})
 		});
 	}
