@@ -56,9 +56,12 @@ export class AppComponent {
 				this.titleService.setTitle(ttl);
 			});
 
-
-			this.authServ.checkToken().then(res => {
-				console.log(res)
+			this.authServ.checkToken().then(() => {
+				// console.log(this.authServ.isAuthenticated())
+				// console.log(this.authServ.authenticationState.value)
+				// if (!this.authServ.authenticationState.value) {
+				// 	this.router.navigate(['/login'])
+				// }
 			})
 		});
 	}

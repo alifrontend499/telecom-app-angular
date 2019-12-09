@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserDetailsPage } from './user-details.page';
+import { AuthGuardService } from 'src/app/_services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserDetailsPage
+    loadChildren: () => import('./index/index.module').then(m => m.IndexPageModule),
+    canActivate: [AuthGuardService]
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserDetailsPageRoutingModule {}
+export class UserDetailsPageRoutingModule { }

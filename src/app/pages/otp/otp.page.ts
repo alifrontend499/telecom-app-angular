@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Storage } from '@ionic/storage';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
 	selector: 'app-otp',
@@ -10,26 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class OtpPage implements OnInit {
 
-	constructor(
-		private router: Router,
-		private storage: Storage
-	) { }
+	constructor() { }
 
-	mobileNoVal: number
-	@ViewChild("otpForm", { static: false }) otpForm: NgForm
-	mobileIcon: string = "assets/images/icons/icon-otp-mobile.png"
-
-	// submit form
-	handleSubmit(ev: any) {
-		// console.time("storagetime")
-		this.storage.set('otpMobileNumber', this.mobileNoVal).then(res => {
-			if (this.otpForm.valid) {
-				this.router.navigate(['otp/otp-verification'])
-			} else {
-				ev.preventDefault()
-			}
-		})
-	}
 	ngOnInit() {
 	}
 
