@@ -3,6 +3,7 @@ import { CommonService } from 'src/app/_services/comon/common.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
 	selector: 'app-step-one',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class StepOnePage implements OnInit {
 	constructor(
+		private platform: Platform,
 		private comServ: CommonService,
 		private barcodeScanner: BarcodeScanner,
 		private fb: FormBuilder,
@@ -98,11 +100,20 @@ export class StepOnePage implements OnInit {
 	handleSubmit(ev: any) {
 		ev.preventDefault()
 		// console.log(this.stepOneForm.valid)
-		if(this.stepOneForm.valid && this.mobileImages.length >= 1) {
+		if (this.stepOneForm.valid && this.mobileImages.length >= 1) {
 			this.router.navigate(['/device-details/step-two'])
 		}
 	}
 	ngOnInit() {
+		// this.platform.ready().then(() => {
+		// 	this.platform.backButton.subscribeWithPriority(9999, () => {
+		// 		document.addEventListener('backbutton', function (event) {
+		// 			event.preventDefault();
+		// 			event.stopPropagation();
+		// 			console.log('hello');
+		// 		}, false);
+		// 	})
+		// })
 	}
 
 }
