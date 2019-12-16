@@ -9,7 +9,8 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { AuthenticationService } from './_services/auth/authentication.service';
 import { HistoryService } from './_services/history/history.service';
-
+import { Plugins, StatusBarStyle, Capacitor } from '@capacitor/core';
+const { StatusBar } = Plugins;
 
 @Component({
 	selector: 'app-root',
@@ -19,6 +20,7 @@ import { HistoryService } from './_services/history/history.service';
 export class AppComponent {
 	title: string = 'Home'
 	private history = [];
+	isStatusBarLight = true
 
 	constructor(
 		private platform: Platform,
@@ -34,6 +36,21 @@ export class AppComponent {
 		historyServ.loadRoutingHistory()
 	}
 
+	// changeStatusBar() {
+	// 	StatusBar.setStyle({
+	// 		style: this.isStatusBarLight ? StatusBarStyle.Dark : StatusBarStyle.Light
+	// 	});
+	// 	this.isStatusBarLight = !this.isStatusBarLight;
+	// }
+
+	// hideStatusBar() {
+	// 	StatusBar.hide();
+	// }
+
+	// showStatusBar() {
+	// 	StatusBar.show();
+	// }
+
 	setDocTitle(title: string) {
 		console.log('current title:::::' + this.titleService.getTitle());
 		this.titleService.setTitle(title);
@@ -43,6 +60,14 @@ export class AppComponent {
 		this.platform.ready().then(() => {
 			// this.statusBar.styleDefault();
 			// this.splashScreen.hide();
+
+			if (Capacitor.isPluginAvailable('StatusBar')) {
+				StatusBar.setBackgroundColor({
+					color: "#d11920"
+				}).then(() => {
+					console.log("Done")
+				})
+			}
 
 			// changing titles dynamically
 			const appTitle = this.titleService.getTitle();

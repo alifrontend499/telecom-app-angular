@@ -3,7 +3,7 @@ import { CommonService } from 'src/app/_services/comon/common.service'
 import { Router } from '@angular/router'
 import { AuthenticationService } from 'src/app/_services/auth/authentication.service'
 import { AlertController, Platform } from '@ionic/angular'
-// import { AppMinimize } from '@ionic-native/app-minimize/ngx';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 
 @Component({
 	selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 		private authServ: AuthenticationService,
 		public alertController: AlertController,
 		public platform: Platform,
-		// private appMinimize: AppMinimize
+		private appMinimize: AppMinimize
 	) { }
 
 	ngOnInit() {
@@ -67,7 +67,10 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 
 	}
 
-	minimizeApp(ev: MouseEvent) { }
+	minimizeApp(ev: MouseEvent) {
+		ev.preventDefault()
+		this.appMinimize.minimize();
+	}
 
 	ngAfterViewInit() {
 		// close the app on backbuton press
@@ -81,7 +84,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 						role: 'cancel',
 						cssClass: 'secondary'
 					}, {
-						text: 'Okay',
+						text: 'OK',
 						handler: () => {
 							// this.comServ.exitApp()
 							// this.appMinimize.minimize();
