@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginPageModule),
     data: { title: 'Login' },
-    canActivate: [LoginGuardService]
+    // canActivate: [LoginGuardService]
   },
   {
     path: 'device-details',

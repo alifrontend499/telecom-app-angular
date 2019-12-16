@@ -17,7 +17,12 @@ export class LoginPage implements OnInit {
 	constructor(private comServ: CommonService, private router: Router, private authServ: AuthenticationService) { }
 
 	ngOnInit() {
-
+		setTimeout(() => {
+			if (this.authServ.isAuthenticated()) {
+				console.log("object")
+				this.router.navigate(['/device-details'])
+			}		
+		}, 200);
 	}
 	// handle submit for login
 	handleSubmit(ev: KeyboardEvent): void {
