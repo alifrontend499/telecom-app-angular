@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core'
 import { CommonService } from 'src/app/_services/comon/common.service'
 import { Router } from '@angular/router'
 import { AuthenticationService } from 'src/app/_services/auth/authentication.service'
-
+import { AlertController, Platform } from '@ionic/angular'
+// import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 
 @Component({
 	selector: 'app-login',
@@ -10,18 +11,25 @@ import { AuthenticationService } from 'src/app/_services/auth/authentication.ser
 	// styleUrls: ['./login.page.scss'],
 	styleUrls: ['../scss/auth-styles.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 	loginForm: HTMLFormElement = null
 	userName: string = ""
 	userPassword: string = ""
-	constructor(private comServ: CommonService, private router: Router, private authServ: AuthenticationService) { }
+	constructor(
+		private comServ: CommonService,
+		private router: Router,
+		private authServ: AuthenticationService,
+		public alertController: AlertController,
+		public platform: Platform,
+		// private appMinimize: AppMinimize
+	) { }
 
 	ngOnInit() {
 		setTimeout(() => {
 			if (this.authServ.isAuthenticated()) {
 				console.log("object")
 				this.router.navigate(['/device-details'])
-			}		
+			}
 		}, 200);
 	}
 	// handle submit for login
@@ -57,6 +65,37 @@ export class LoginPage implements OnInit {
 			}, 1300);
 		}
 
+	}
+
+	minimizeApp(ev: MouseEvent) { }
+
+	ngAfterViewInit() {
+		// close the app on backbuton press
+		this.platform.backButton.subscribe(() => {
+			this.comServ.showConfirmBox({
+				header: 'Confirm!',
+				message: 'Are you sure you want to exit the app',
+				buttons: [
+					{
+						text: 'Cancel',
+						role: 'cancel',
+						cssClass: 'secondary'
+					}, {
+						text: 'Okay',
+						handler: () => {
+							// this.comServ.exitApp()
+							// this.appMinimize.minimize();
+						}
+					}
+				]
+			}).then(confirm => {
+				confirm.present()
+			})
+		})
+	}
+
+	ngOnDestroy() {
+		this.platform.backButton.unsubscribe()
 	}
 
 	// handle login button click  

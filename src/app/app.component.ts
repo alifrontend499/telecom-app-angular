@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+// import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -22,8 +22,8 @@ export class AppComponent {
 
 	constructor(
 		private platform: Platform,
-		private splashScreen: SplashScreen,
-		private statusBar: StatusBar,
+		// private splashScreen: SplashScreen,
+		// private statusBar: StatusBar,
 		private titleService: Title,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -41,8 +41,8 @@ export class AppComponent {
 
 	initializeApp() {
 		this.platform.ready().then(() => {
-			this.statusBar.styleDefault();
-			this.splashScreen.hide();
+			// this.statusBar.styleDefault();
+			// this.splashScreen.hide();
 
 			// changing titles dynamically
 			const appTitle = this.titleService.getTitle();

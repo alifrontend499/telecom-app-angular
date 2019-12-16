@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { AlertController } from '@ionic/angular'
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +11,8 @@ export class CommonService {
 
 	constructor(
 		public loadingController: LoadingController,
-		public toastController: ToastController
+		public toastController: ToastController,
+		public alertController: AlertController
 	) {
 		defineCustomElements(window)
 	}
@@ -59,5 +61,16 @@ export class CommonService {
 			var newImageUrlOrg: string = image.webPath;
 			return newImageUrlOrg
 		})()
+	}
+
+	// show confirm Box
+	async showConfirmBox(data: Object): Promise<HTMLIonAlertElement> {
+		const alert = await this.alertController.create(data);
+		return alert
+	}
+
+	// exit app
+	exitApp(): void {
+		navigator['app'].exitApp()
 	}
 }
