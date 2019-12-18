@@ -104,6 +104,12 @@ export class StepOnePage implements OnInit {
 			this.router.navigate(['/device-details/step-two'])
 		}
 	}
+
+	openModal(img: string) {
+		this.comServ.zoomImg(img).then(modal => {
+			modal.present();
+		})
+	}
 	ngOnInit() {
 		this.platform.ready().then(() => {
 			this.platform.backButton.subscribeWithPriority(9999, () => {

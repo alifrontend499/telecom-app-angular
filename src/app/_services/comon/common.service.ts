@@ -3,16 +3,18 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { AlertController } from '@ionic/angular'
+import { ModalController } from '@ionic/angular';
+import { ImageModalPage } from 'src/app/pages/image-modal/image-modal.page';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class CommonService {
-
 	constructor(
 		public loadingController: LoadingController,
 		public toastController: ToastController,
-		public alertController: AlertController
+		public alertController: AlertController,
+		private modalController: ModalController
 	) {
 		defineCustomElements(window)
 	}
@@ -72,5 +74,27 @@ export class CommonService {
 	// exit app
 	exitApp(): void {
 		navigator['app'].exitApp()
+	}
+
+	// open modal
+	async openModal(data: any): Promise<any> {
+		const modal = await this.modalController.create(data)
+		return modal
+	}
+	// close modal
+	closeModal() {
+		this.modalController.dismiss({
+			'dismissed': true
+		})
+	}
+	// zoom img
+	async zoomImg(img: string): Promise<HTMLIonModalElement> {
+		const modal = await this.modalController.create({
+			component: ImageModalPage,
+			componentProps: {
+				img: img
+			}
+		})
+		return modal
 	}
 }

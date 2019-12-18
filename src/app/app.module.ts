@@ -14,11 +14,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonService } from './_services/comon/common.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ImageModalPageModule } from './pages/image-modal/image-modal.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot(), ImageModalPageModule],
   providers: [
     StatusBar,
     SplashScreen,

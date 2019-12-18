@@ -30,7 +30,8 @@ const routes: Routes = [
     path: 'added-successfully',
     loadChildren: () => import('./pages/added-successfully/added-successfully.module').then(m => m.AddedSuccessfullyPageModule),
     data: { title: 'Success' }
-  },
+  }
+
 
 
 
