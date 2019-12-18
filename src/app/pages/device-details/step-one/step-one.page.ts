@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { ImageModalPage } from '../../image-modal/image-modal.page';
 
 @Component({
 	selector: 'app-step-one',
@@ -106,7 +107,12 @@ export class StepOnePage implements OnInit {
 	}
 
 	openModal(img: string) {
-		this.comServ.zoomImg(img).then(modal => {
+		this.comServ.openModal({
+			component: ImageModalPage,
+			componentProps: {
+				img: img
+			}
+		}).then(modal => {
 			modal.present();
 		})
 	}

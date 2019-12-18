@@ -4,7 +4,7 @@ import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { AlertController } from '@ionic/angular'
 import { ModalController } from '@ionic/angular';
-import { ImageModalPage } from 'src/app/pages/image-modal/image-modal.page';
+import { ImageModalPage } from '../../pages/image-modal/image-modal.page';
 
 @Injectable({
 	providedIn: 'root'
@@ -86,15 +86,5 @@ export class CommonService {
 		this.modalController.dismiss({
 			'dismissed': true
 		})
-	}
-	// zoom img
-	async zoomImg(img: string): Promise<HTMLIonModalElement> {
-		const modal = await this.modalController.create({
-			component: ImageModalPage,
-			componentProps: {
-				img: img
-			}
-		})
-		return modal
 	}
 }

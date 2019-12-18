@@ -10,10 +10,6 @@
 <ion-content class="ion-padding content-device-details-step-one">
 	<div class="app-device-details">
 		<div class="app-device-details step-one">
-			<ion-img 
-			src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-			(click)="openModal('https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')"
-			></ion-img>
 			<div class="app-device-details-form">
 				<form action="#" id="stepOneForm" [formGroup]="stepOneForm"
 					(ngSubmit)="handleSubmit($event)">
@@ -183,7 +179,7 @@
 												class="item">
 												<div class="inner position-relative d-flex align-items-center justify-content-center"
 													[attr.data-key]="i">
-													<ion-img [src]="img" alt="mobile-img" (ionImgDidLoad)="imgLoaded()">
+													<ion-img [src]="img" alt="mobile-img" (ionImgDidLoad)="imgLoaded()" (click)="openModal(img)">
 													</ion-img>
 													<ion-button color="primary"
 														class="m-0 position-absolute img-close-icon"

@@ -1,5 +1,17 @@
-<ion-content>
-  <h1>Hello</h1>
-  <button (click)="closeModal($event)">Close</button>
-  <ion-img [(src)]="newImg"></ion-img>
+<ion-content fullscreen>
+	<div class="img-box h-100 w-100 d-flex flex-wrap position-relative align-items-center justify-content-center">
+		<div class="all-buttons d-flex align-items-center justify-content-end position-absolute">
+			<ion-button class="" (click)="closeModal($event)" class="">
+				<ion-icon name="close"></ion-icon>
+			</ion-button>
+		</div>
+
+		<ion-slides [options]="zoomOpts">
+			<ion-slide>
+				<div class="swiper-zoom-container">
+					<ion-img [(src)]="newImg"></ion-img>
+				</div>
+			</ion-slide>
+		</ion-slides>
+	</div>
 </ion-content>
