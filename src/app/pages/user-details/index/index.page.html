@@ -131,7 +131,7 @@
 											<div class="selected-img-block proof-img position-relative"
 												*ngIf="idProof.length">
 												<p class="head">ID Proof</p>
-												<ion-img [src]="idProof">
+												<ion-img [src]="idProof" (click)="openModal(idProof)">
 												</ion-img>
 												<ion-button color="primary" class="m-0 position-absolute img-close-icon"
 													(click)="deleteIdProof($event)">
@@ -187,7 +187,7 @@
 												<div class="selected-img-block proof-img position-relative"
 													*ngIf="sellerPicture.length">
 													<p class="head">Phone Seller Picture</p>
-													<ion-img [src]="sellerPicture">
+													<ion-img [src]="sellerPicture" (click)="openModal(sellerPicture)">
 													</ion-img>
 													<ion-button color="primary"
 														class="m-0 position-absolute img-close-icon"
@@ -198,7 +198,7 @@
 												<div class="selected-img-block proof-img position-relative"
 													*ngIf="customerAgreement.length">
 													<p class="head">Customer Signed Agreement</p>
-													<ion-img [src]="customerAgreement">
+													<ion-img [src]="customerAgreement" (click)="openModal(customerAgreement)">
 													</ion-img>
 													<ion-button color="primary"
 														class="m-0 position-absolute img-close-icon"
@@ -209,7 +209,7 @@
 												<div class="selected-img-block proof-img position-relative"
 													*ngIf="phoneIMEI.length">
 													<p class="head">Phone IMEI Picture</p>
-													<ion-img [src]="phoneIMEI">
+													<ion-img [src]="phoneIMEI" (click)="openModal(phoneIMEI)">
 													</ion-img>
 													<ion-button color="primary"
 														class="m-0 position-absolute img-close-icon"

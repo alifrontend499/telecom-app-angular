@@ -42,6 +42,10 @@ export class StepOnePage implements OnInit {
 		{ name: '256' }
 	]
 
+	// mobileImages: Array<string> = [
+	// 	'https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg',
+	// 	'https://newevolutiondesigns.com/images/freebies/hd-wallpaper-37.jpg'
+	// ]
 	mobileImages: Array<string> = []
 
 	// message after image loaded
@@ -106,7 +110,7 @@ export class StepOnePage implements OnInit {
 		}
 	}
 
-	openModal(img: string) {
+	openModal(img: any): void {
 		this.comServ.openModal({
 			component: ImageModalPage,
 			componentProps: {
@@ -116,13 +120,13 @@ export class StepOnePage implements OnInit {
 			modal.present();
 		})
 	}
+
 	ngOnInit() {
 		this.platform.ready().then(() => {
 			this.platform.backButton.subscribeWithPriority(9999, () => {
 				document.addEventListener('backbutton', function (event) {
 					event.preventDefault();
 					event.stopPropagation();
-					console.log('hello');
 				}, false);
 			})
 		})

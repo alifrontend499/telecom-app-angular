@@ -86,7 +86,7 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 					}, {
 						text: 'OK',
 						handler: () => {
-							// this.comServ.exitApp()
+							this.comServ.exitApp()
 							// this.appMinimize.minimize();
 						}
 					}
@@ -97,6 +97,9 @@ export class LoginPage implements OnInit, OnDestroy, AfterViewInit {
 		})
 	}
 
+	ionViewDidLeave() {
+		this.platform.backButton.unsubscribe()
+	}
 	ngOnDestroy() {
 		this.platform.backButton.unsubscribe()
 	}

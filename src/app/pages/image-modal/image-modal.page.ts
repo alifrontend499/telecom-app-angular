@@ -9,21 +9,26 @@ import { CommonService } from 'src/app/_services/comon/common.service';
 })
 export class ImageModalPage implements OnInit {
 
-	newImg: string
+	newImg: any
+	navPram: any
 
 	zoomOpts = {
 		zoom: {
-			maxRatio: 3
+			maxRatio: 4
 		}
 	}
 
 	constructor(navParams: NavParams, private comServ: CommonService) {
 		console.log(navParams.get('img'))
-		this.newImg = navParams.get('img')
+		this.navPram = navParams.get('img')
 	}
 
+	ionViewWillEnter() {
+		this.ngOnInit()
+		this.newImg = this.navPram
+	}
 
-	closeModal(ev: MouseEvent) {
+	closeModal(ev: MouseEvent): void {
 		ev.preventDefault()
 		console.log(ev)
 		this.comServ.closeModal()

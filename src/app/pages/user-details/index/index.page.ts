@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonService } from 'src/app/_services/comon/common.service';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
+import { ImageModalPage } from '../../image-modal/image-modal.page';
 
 @Component({
 	selector: 'app-index',
@@ -40,10 +41,10 @@ export class IndexPage implements OnInit {
 	]
 
 
-	idProof: string = ""
-	sellerPicture: string = ""
-	customerAgreement: string = ""
-	phoneIMEI: string = ""
+	idProof: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	sellerPicture: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	customerAgreement: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	phoneIMEI: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
 
 	// function for takePictureForIdProof
 	takePictureForIdProof(ev: KeyboardEvent): void {
@@ -127,6 +128,18 @@ export class IndexPage implements OnInit {
 		) {
 			this.router.navigate(['/otp'])
 		}
+	}
+
+	// image popup
+	openModal(img: any): void {
+		this.comServ.openModal({
+			component: ImageModalPage,
+			componentProps: {
+				img: img
+			}
+		}).then(modal => {
+			modal.present();
+		})
 	}
 
 	ngOnInit() {
