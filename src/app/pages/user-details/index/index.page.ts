@@ -41,10 +41,14 @@ export class IndexPage implements OnInit {
 	]
 
 
-	idProof: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
-	sellerPicture: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
-	customerAgreement: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
-	phoneIMEI: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	// idProof: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	// sellerPicture: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	// customerAgreement: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	// phoneIMEI: string = "https://www.jakpost.travel/wimages/large/52-526877_desktop-wallpaper-for-peacock-feather-peacock-desktop-wallpaper.jpg"
+	idProof: string = ""
+	sellerPicture: string = ""
+	customerAgreement: string = ""
+	phoneIMEI: string = ""
 
 	// function for takePictureForIdProof
 	takePictureForIdProof(ev: KeyboardEvent): void {
