@@ -1,6 +1,6 @@
 {
-  "appId": "com.telecomapp.app",
-  "appName": "telecomapp",
+  "appId": "com.telecom.app",
+  "appName": "Telecom App",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

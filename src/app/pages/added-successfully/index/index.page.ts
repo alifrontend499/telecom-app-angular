@@ -15,7 +15,10 @@ export class IndexPage implements OnInit {
 
   goToStepOne(ev: KeyboardEvent) {
     ev.preventDefault()
-    this.router.navigate(['device-details/step-one'])
+    // this.router.navigate(['device-details/step-one']).then(() => {
+    //   window.location.reload();
+    // });
+    this.router.navigate(['device-details/step-one']);
   }
 
 }
